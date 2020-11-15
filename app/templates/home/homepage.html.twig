@@ -36,74 +36,41 @@
     <!-- End Navbar -->
     <div class="wrapper">
         <div class="page-header clear-filter page-header-small" filter-color="orange">
-            <div class="page-header-image" data-parallax="true" style="background-image:url('assets/img/bg7.jpg');">
+            <div class="page-header-image" data-parallax="true" style="background-image:url({{ asset('assets/img/bg7.jpg') }});">
             </div>
             <div class="container">
                 <div class="photo-container">
-                    <img src="assets/img/ryan.jpg" alt="">
+                    <img src="{{ asset(user.avatar) }}" alt="{{ user.name }}">
                 </div>
-                <h3 class="title">Ryan Scheinder</h3>
-                <p class="category">@ryan</p>
+                <h3 class="title">{{ user.name }}</h3>
+                <p class="category">{{ user.username }}</p>
             </div>
         </div>
 
         <div class="section">
             <div class="container">
                 <h3 class="title">Timeline</h3>
-                <div class="card">
-                </div>
 
+                {% for post in posts %}
                 <div class="card">
                     <div class="row no-gutters">
                         <div class="col-md-1">
-                            <a href="#"><img src="assets/img/ryan.jpg" class="card-img" alt="..."></a>
+                            <a href="#"><img src="{{ asset(post.author.avatar) }}" alt="{{ post.author.name }}"></a>
                         </div>
                         <div class="col-md-11">
                             <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <h4 class="card-title">{{ post.title }}</h4>
+                                <p class="card-text">{{ post.content }}</p>
+                                <p class="card-text"><small class="text-muted">{{ post.createdAt | date('d/m/Y H:i') }}</small></p>
                                 <a href="#" class="card-link"><i class="far fa-heart"></i> Like</a>
                                 <a href="#" class="card-link"><i class="fas fa-heart"></i> Dislike</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-md-1">
-                            <a href="#"><img src="assets/img/julie.jpg" class="card-img" alt="..."></a>
-                        </div>
-                        <div class="col-md-11">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                <a href="#" class="card-link"><i class="far fa-heart"></i> Like</a>
-                                <a href="#" class="card-link"><i class="fas fa-heart"></i> Dislike</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-md-1">
-                            <a href="#"><img src="assets/img/julie.jpg" class="card-img" alt="..."></a>
-                        </div>
-                        <div class="col-md-11">
-                            <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                <a href="#" class="card-link"><i class="far fa-heart"></i> Like</a>
-                                <a href="#" class="card-link"><i class="fas fa-heart"></i> Dislike</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% else %}
+                    <p>Non ci sono ancora post</p>
+                {% endfor %}
 
                 <nav>
                     <ul class="pagination">
