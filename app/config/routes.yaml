@@ -2,7 +2,7 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-homepage:
-    path: /
-    controller: App\Controller\HomeController::homepage
-    methods: GET
+#homepage:
+#    path: /
+#    controller: App\Controller\HomeController::homepage
+#    methods: GET
