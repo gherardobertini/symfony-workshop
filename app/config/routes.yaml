@@ -1,3 +1,10 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+sum:
+    path: /sum/{value1}/{value2}
+    requirements:
+        value1: '\d+'
+        value2: '\d+'
+    controller: App\Controller\SumController::sum
