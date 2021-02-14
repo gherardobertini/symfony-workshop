@@ -8,3 +8,7 @@ sum:
         value1: '\d+'
         value2: '\d+'
     controller: App\Controller\SumController::sum
+
+homepage:
+    path: /
+    controller: App\Controller\HomepageController::home
