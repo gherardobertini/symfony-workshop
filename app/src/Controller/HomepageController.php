@@ -10,6 +10,16 @@ class HomepageController extends AbstractController
 {
     public function home(): Response
     {
-        return $this->render('homepage/home.html.twig', []);
+        return $this->render('homepage/home.html.twig', [
+            'user_title'    => 'Ryan Scheinder',
+            'user_category' => '@Ryan',
+            'user_image' => 'assets/img/ryan.jpg',
+            'items' => [
+                [
+                    'image' => 'assets/img/ryan.jpg',
+                    
+                ]
+            ]
+        ]);
     }
 }
