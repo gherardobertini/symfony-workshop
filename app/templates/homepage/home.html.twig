@@ -11,10 +11,10 @@
         </div>
         <div class="container">
             <div class="photo-container">
-                <img src="{{ asset(user_image) }}" alt="">
+                <img src="{{ asset(user.image) }}" alt="">
             </div>
-            <h3 class="title">{{ user_title }}</h3>
-            <p class="category">{{ user_category }}</p>
+            <h3 class="title">{{ user.title }}</h3>
+            <p class="category">{{ user.category }}</p>
         </div>
     </div>
 
@@ -24,6 +24,25 @@
             <div class="card">
             </div>
 
+            {% for post in posts %}
+            <div class="card">
+                <div class="row no-gutters">
+                    <div class="col-md-1">
+                        <a href="#"><img src="{{ asset(post.image) }}" class="card-img" alt="..."></a>
+                    </div>
+                    <div class="col-md-11">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ post.title }}</h4>
+                            <p class="card-text">{{ post.content }}</p>
+                            <p class="card-text"><small class="text-muted">Last updated {{ post.updated_at | date('d/m/Y H:i:s') }}</small></p>
+                            <a href="#" class="card-link"><i class="far fa-heart"></i> Like</a>
+                            <a href="#" class="card-link"><i class="fas fa-heart"></i> Dislike</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+<!--
             <div class="card">
                 <div class="row no-gutters">
                     <div class="col-md-1">
@@ -75,7 +94,7 @@
                     </div>
                 </div>
             </div>
-
+-->
             <nav>
                 <ul class="pagination">
                     <li class="page-item disabled">

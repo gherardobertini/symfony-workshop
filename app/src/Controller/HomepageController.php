@@ -11,14 +11,33 @@ class HomepageController extends AbstractController
     public function home(): Response
     {
         return $this->render('homepage/home.html.twig', [
-            'user_title'    => 'Ryan Scheinder',
-            'user_category' => '@Ryan',
-            'user_image' => 'assets/img/ryan.jpg',
-            'items' => [
+            'user' => [
+                'title'    => 'Ryan Scheinder',
+                'category' => '@Ryan',
+                'image' => 'assets/img/ryan.jpg',
+            ],
+            'posts' => [
                 [
-                    'image' => 'assets/img/ryan.jpg',
-                    
-                ]
+                    'image'      => 'assets/img/ryan.jpg',
+                    'title'      => 'Card title',
+                    'content'    => 'This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.',
+                    'updated_at' => new \Datetime(),
+                ],
+                [
+                    'image'      => 'assets/img/julie.jpg',
+                    'title'      => 'Card title',
+                    'content'    => 'This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.',
+                    'updated_at' => new \Datetime(),
+                ],
+                [
+                    'image'   => 'assets/img/julie.jpg',
+                    'title'   => 'Card title',
+                    'content' => 'This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.',
+                    'updated_at' => new \Datetime(),
+                ],                
             ]
         ]);
     }
