@@ -1,0 +1,9 @@
+#config/validator/validation.yml
+App\Entity\Post:
+  properties:
+    title:
+      - NotBlank: ~
+      - Length:
+          min: 5
+          max: 255
+          minMessage: 'La lunghezza del titolo deve essere di almeno {{ limit }} caratteri'

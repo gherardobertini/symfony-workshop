@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="wrapper">
+        <div class="section">
+            <div class="container">
+                <h3 class="title">Create a new post</h3>
+
+                {{ form_start(postForm) }}
+                    {{ form_widget(postForm) }}
+                    <button class="btn">{{ button_label|default('Save') }}</button>
+                {{ form_end(postForm) }}
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

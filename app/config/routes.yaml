@@ -12,3 +12,8 @@ sum:
 homepage:
     path: /
     controller: App\Controller\HomepageController::home
+
+post_new:
+    path: /posts/new
+    controller: App\Controller\PostController::new
+    methods: [GET, POST]
