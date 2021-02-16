@@ -7,9 +7,18 @@ use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    /** @var UserPasswordEncoderInterface */
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $this->createRyanContents($manager);
@@ -22,20 +31,20 @@ class AppFixtures extends Fixture
     {
         $ryan = new User();
         $ryan->setEmail('ryan@ryan.it');
-        $ryan->setPassword('ryan');
         $ryan->setUsername('ryan');
         $ryan->setFullName('Ryan Scheinder');
         $ryan->setAvatar('/assets/img/ryan.jpg');
         $ryan->setCreatedAt(new DateTimeImmutable());
+
+        $password = $this->passwordEncoder->encodePassword($ryan, 'ryan');
+        $ryan->setPassword($password);
+
 
         $post = new Post();
         $post->setTitle('Enjoy the story you are living');
         $post->setContent('Sometimes you have to let go of the picture of what you thought it would be like and learn to find joy in the story you are actually living.');
         $post->setAuthor($ryan);
         $post->setCreatedAt(new DateTimeImmutable('2020-05-02 11:00:00'));
-
-        $manager->getRepository(User::class)
-            ->upgradePassword($ryan, 'ryan');
 
         $manager->persist($ryan);
         $manager->persist($post);
@@ -50,6 +59,9 @@ class AppFixtures extends Fixture
         $julie->setFullName('Julie Standford');
         $julie->setAvatar('/assets/img/julie.jpg');
         $julie->setCreatedAt(new DateTimeImmutable());
+
+        $password = $this->passwordEncoder->encodePassword($julie, 'julie');
+        $julie->setPassword($password);
 
         $post = new Post();
         $post->setTitle('Live for what today has to offer');
