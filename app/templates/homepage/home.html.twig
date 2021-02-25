@@ -9,7 +9,7 @@
             <div class="container">
                 {% if user is defined and user is not empty %}
                 <div class="photo-container">
-                    <img src="{{ asset(user.avatar) }}" alt="{{ user.fullName }}">
+                    <img src="{{ asset(user.avatar|default('assets/img/default-avatar.png') ) }}" alt="{{ user.fullName }}">
                 </div>
                 <h3 class="title">{{ user.fullName }}</h3>
                 <p class="category">{{ user.username }}</p>
