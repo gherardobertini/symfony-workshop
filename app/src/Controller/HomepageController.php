@@ -11,23 +11,15 @@ class HomepageController extends AbstractController
 {
     public function home(PostRepository $postRepository): Response
     {
+        $user = $this->getUser();        
         $posts = $postRepository->findBy([], ['createdAt' => 'DESC']);
 
         return $this->render(
             'homepage/home.html.twig',
             [
                 'posts' => $posts,
-                'user'  => $this->getStaticData(),
+                'user'  => $user,
             ]
         );
-    }
-
-    private function getStaticData(): array
-    {
-        return [
-            'name'     => 'Ryan Scheinder',
-            'username' => '@ryan',
-            'avatar'   => '/assets/img/ryan.jpg',
-        ];
     }
 }

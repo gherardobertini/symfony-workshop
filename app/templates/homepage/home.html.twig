@@ -9,9 +9,9 @@
             <div class="container">
                 {% if user is defined and user is not empty %}
                 <div class="photo-container">
-                    <img src="{{ asset(user.avatar) }}" alt="{{ user.name }}">
+                    <img src="{{ asset(user.avatar) }}" alt="{{ user.fullName }}">
                 </div>
-                <h3 class="title">{{ user.name }}</h3>
+                <h3 class="title">{{ user.fullName }}</h3>
                 <p class="category">{{ user.username }}</p>
                 {% endif %}
             </div>
