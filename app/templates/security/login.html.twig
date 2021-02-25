@@ -1,25 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Login{% endblock %}
+
+{% block body_classes %}login-page sidebar-collapse{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+<div class="page-header clear-filter" filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/login.jpg)"></div>
+    <div class="content">
+        <div class="container">
+            <div class="col-md-4 ml-auto mr-auto">
+                <div class="card card-login card-plain">
+                    <form class="form" method="post" action="">
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
 
+                        {% if app.user %}
+                            <div class="mb-3">
+                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            </div>
+                        {% endif %}
+
+                        <div class="card-header text-center">
+                                <h1 class="display-1">KVAK</h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group no-border input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                      <i class="now-ui-icons users_circle-08"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Username" name="email" id="inputEmail" value="{{ last_username }}" required autofocus />
+                            </div>
+                            <div class="input-group no-border input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                      <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                                </div>
+                                <input type="password" placeholder="Password" name="password" id="inputPassword" class="form-control" required/>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-primary btn-round btn-lg btn-block" type="submit">Get Started</button>
+                            <div class="pull-left">
+                                <h6>
+                                    <a href="#pablo" class="link">Create Account</a>
+                                </h6>
+                            </div>
+                            <div class="pull-right">
+                                <h6>
+                                    <a href="#" class="link">Need Help?</a>
+                                </h6>
+                            </div>
+                        </div>                        
+{#
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
     <label for="inputPassword">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
-
+#}
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
@@ -35,8 +79,11 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+
+                    </form>
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
 {% endblock %}
