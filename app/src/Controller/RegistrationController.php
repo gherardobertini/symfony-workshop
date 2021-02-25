@@ -31,12 +31,14 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            
+            $user->setCreatedAt(new \Datetime());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-
+            
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
